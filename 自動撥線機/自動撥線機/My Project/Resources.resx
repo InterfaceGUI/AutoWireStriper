@@ -118,25 +118,82 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icons8_about_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-about-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_home_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-home-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_joystick_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-joystick-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="工作區域_1_複本_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="工作區域_1_複本" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="未命名_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\未命名-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="60dd2184e4f64de7f45073a8309ad2d9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\60dd2184e4f64de7f45073a8309ad2d9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本 3@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_tune_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-tune-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="工作區域_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6304001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\630400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本 2@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_pause_button_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-pause-button-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_circled_play_80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-circled-play-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_usb_on_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-usb-on-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="169657121_108340540545735_6884104664430673920_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\169657121_108340540545735_6884104664430673920_n.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8_usb_connected_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-usb-connected-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6304126" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6304126.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_home_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-home-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="134357e9f8b734e73fd89e7b7c6b4be58" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\134357e9f8b734e73fd89e7b7c6b4be58.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_about_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-about-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="工作區域_1_複本_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工作區域 1 複本 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_usb_disconnected_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-usb-disconnected-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_usb_on_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-usb-on-26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_joystick_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-joystick-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="aasdasd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\aasdasd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

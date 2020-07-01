@@ -53,6 +53,17 @@ Module isPLC_modbus_IO
         End Select
     End Function
 
+    Public Function ReadC(ByVal selectedPin As Int16) As Int16
+        Dim DV() As Byte
+        Dim tmpD As String
+        Dim A_value As Int16
+        DV = IO.ReadData(isPLC_Connect.MemoryAddress.WC, selectedPin, 2)
+        tmpD = Convert.ToString(DV(0) * 256 + DV(1), 16).PadLeft(4, "0")
+        A_value = Val("&H" & tmpD)
+        Return A_value
+    End Function
+
+
     '================ 讀取函式：ReadA() ================
     '[功能]：讀取 A0~A5(D0~D5) 的數值
     '[用法]：

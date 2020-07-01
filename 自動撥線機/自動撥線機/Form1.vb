@@ -1,15 +1,18 @@
 ﻿Imports System.ComponentModel
-Imports isPLC_Modbus
 
 Public Class Form1
     Dim selectComPort As String = ""
     Dim connected As Boolean = False
+    Dim isconnect As Boolean = False
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ts_progressBar_connection.Size = New Size(200, 20)
         TabControl1.Size = New Size(1019, 520)
         TabControl1.Location = New Point(4, -34)
-
+        NumericUpDown1.Value = My.Settings.long2
+        NumericUpDown2.Value = My.Settings.long1
+        NumericUpDown3.Value = My.Settings.long2
+        NumericUpDown4.Value = My.Settings.count1
     End Sub
 
 #Region "PanelMove"
@@ -43,7 +46,7 @@ Public Class Form1
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Me.WindowState = FormWindowState.Minimized
-        Me.Visible = False
+        'Me.Visible = False
     End Sub
 
 #End Region
@@ -57,7 +60,8 @@ Public Class Form1
 
             Try
                 tssb_SerialPorts.Image = ImageList_usbStatus.Images(0)
-                IO.isPLC_SerialPort.Close()
+                IsPLC_IO_Card1.Close()
+                isconnect = False
                 tssb_SerialPorts.Text = "連線 (" & selectComPort & ")"
                 connected = False
             Catch ex As Exception
@@ -75,6 +79,9 @@ Public Class Form1
                 If BackgroundWorker_connect.IsBusy Then
                     Exit Sub
                 End If
+
+
+
                 BackgroundWorker_connect.RunWorkerAsync()
                 ts_progressBar_connection.Visible = True
 
@@ -100,7 +107,8 @@ Public Class Form1
     '背景處理程序
     Private Sub BackgroundWorker_connect_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker_connect.DoWork
         Try
-            IO = New isPLC_Connect(selectComPort, 1)
+            IsPLC_IO_Card1.PortName = selectComPort
+            IsPLC_IO_Card1.Open()
             BackgroundWorkerConnect_isSuccess = True
 
         Catch ex As Exception
@@ -120,13 +128,15 @@ Public Class Form1
         End If
         Dim Version As String = ""
 
-        For Each x In IO.ReadVersion()
+        For Each x In IsPLC_IO_Card1.IO.ReadVersion()
             Version += x & "."
         Next
 
         ts_progressBar_connection.Visible = False
         tssb_SerialPorts.Text = "以連線至 (" & selectComPort & ") 版本：" & Mid(Version, 1, Len(Version) - 1)
         tssb_SerialPorts.Image = ImageList_usbStatus.Images(1)
+        Timer_ReadStatus.Enabled = True
+        isconnect = True
     End Sub
 
 
@@ -204,7 +214,141 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer_ReadStatus.Tick
+        If bwork_readstatus.IsBusy Then
+            Exit Sub
+        End If
+        bwork_readstatus.RunWorkerAsync()
+
+    End Sub
+    Dim M4 As Boolean
+    Dim M5 As Boolean
+    Dim X0 As Boolean
+    Dim X1 As Boolean
+    Dim D5 As UShort
+    Dim D6 As UShort
+    Dim D7 As UShort
+    Dim D8 As UShort
+    Dim D10 As UShort
+    Dim C0 As UShort
+
+    Private Sub bwork_readstatus_DoWork(sender As Object, e As DoWorkEventArgs) Handles bwork_readstatus.DoWork
+
+        M4 = IIf(IsPLC_IO_Card1.Read("M", 4) = "1", True, False) '綠燈/紅燈
+        System.Threading.Thread.Sleep(10)
+        M5 = IIf(IsPLC_IO_Card1.Read("M", 5) = "1", True, False) '黃燈
+        System.Threading.Thread.Sleep(10)
+        X0 = IIf(IsPLC_IO_Card1.Read("X", 0) = "1", True, False) '線
+        System.Threading.Thread.Sleep(10)
+
+        X1 = IIf(IsPLC_IO_Card1.Read("X", 1) = "1", True, False) '線
+        System.Threading.Thread.Sleep(10)
+
+        ' MsgBox(IsPLC_IO_Card1.ReadValue("D", 5))
+        Dim readdd = IsPLC_IO_Card1.ReadValue("D", 5, 12)
+
+        D5 = readdd(0)
+        D6 = readdd(1)
+        D7 = readdd(2)
+        D8 = readdd(3)
+        D10 = readdd(5)
+
+        'D5 = IsPLC_IO_Card1.ReadValue("D", 5, 2)(0)  '長度
+        'D6 = IsPLC_IO_Card1.ReadValue("D", 6, 2)(0) ' 剝長度
+        'D7 = IsPLC_IO_Card1.ReadValue("D", 7, 2)(0) '數量
+        'D8 = IsPLC_IO_Card1.ReadValue("D", 8, 2)(0) 'RC
+        'D10 = IsPLC_IO_Card1.ReadValue("D", 10, 2)(0) 'step
+        System.Threading.Thread.Sleep(10)
+        C0 = IsPLC_IO_Card1.ReadValue("C", 0)
+
+
+
+    End Sub
+
+    Private Sub bwork_readstatus_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bwork_readstatus.RunWorkerCompleted
+
+        lb_long.Text = D5 * 0.15 & " mm"
+        lb_long2.Text = D6 * 0.15 & " mm"
+        lb_cycle.Text = D7 & " 次"
+        Try
+            lb_lcount.Text = D7 - C0 & " 次"
+
+        Catch ex As Exception
+
+        End Try
+        lb_step.Text = D10 * 0.15 & " mm"
+        lb_rc.Text = D8
+        pb_feed.Image = IIf(X0, My.Resources.red, My.Resources.redd)
+        pb_open.Image = IIf(X1, My.Resources.red, My.Resources.redd)
+        pb_Green.Image = IIf(M4, My.Resources.gl, My.Resources.nl)
+        pb_Yellow.Image = IIf(M5, My.Resources.yl, My.Resources.nl)
+        pb_red.Image = IIf(Not M4, My.Resources.rl, My.Resources.nl)
+
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As NumericUpDown, e As EventArgs) Handles NumericUpDown1.ValueChanged, NumericUpDown2.ValueChanged
+        If Not isconnect Then
+            Exit Sub
+        End If
+
+        Select Case sender.Tag
+            Case 1
+                NumericUpDown3.Value = sender.Value
+                My.Settings.long2 = sender.Value
+
+            Case 2
+                My.Settings.long1 = sender.Value
+        End Select
+
+        My.Settings.Save()
+
+    End Sub
+
+    Private Sub NumericUpDown4_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown4.ValueChanged
+        If Not isconnect Then
+            Exit Sub
+        End If
+        My.Settings.count1 = sender.Value
+        My.Settings.Save()
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        If Not isconnect Then
+            Exit Sub
+        End If
+        Timer_ReadStatus.Enabled = False
+        If bwork_readstatus.IsBusy Then bwork_readstatus.CancelAsync()
+        Dim vaule(3) As UInteger
+        vaule(0) = NumericUpDown2.Value / 0.15
+        vaule(1) = NumericUpDown1.Value / 0.15
+        vaule(2) = NumericUpDown4.Value
+
+        IsPLC_IO_Card1.WriteD(0, vaule(0), vaule(1), vaule(2))
+
+        Timer_ReadStatus.Enabled = True
+    End Sub
+
+    Private Sub btn_start_Click(sender As Object, e As EventArgs) Handles btn_start.Click
+        IsPLC_IO_Card1.OUT("M", 0, "1")
+        IsPLC_IO_Card1.OUT("M", 0, "0")
+    End Sub
+
+    Private Sub btn_stop_Click(sender As Object, e As EventArgs) Handles btn_stop.Click
+        IsPLC_IO_Card1.OUT("M", 7, "1")
+        IsPLC_IO_Card1.OUT("M", 7, "0")
+    End Sub
+
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button7.Click, Button6.Click, Button5.Click, Button4.Click
 
+    End Sub
+
+    Private Sub TabPage4_Click(sender As Object, e As EventArgs) Handles TabPage4.Click
+
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+
+        System.Diagnostics.Process.Start("https://github.com/InterfaceGUI")
     End Sub
 End Class
