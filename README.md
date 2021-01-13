@@ -1,1 +1,3 @@
 # AutoWireStriper
+
+A school project
